@@ -9,16 +9,22 @@ sg.theme('GrayGrayGray')
 layout =[
     #[sg.Frame('', [],size=(400,600))],
     [sg.Text(key='out',font=('Arial',30),pad=((30,30),(30,30)))],
-    [sg.Button('AC',size=(8,4),key='99'),sg.Button('+/-',size=(8,4),key='ps'),sg.Button('%',size=(8,4),key='per'),sg.Button('/',size=(8,4),key='24')],
+    [sg.Button('AC',size=(8,4),key='99'),sg.Button('+/-',size=(8,4),key='31'),sg.Button('%',size=(8,4),key='32'),sg.Button('/',size=(8,4),key='24')],
     [sg.Button('7',size=(8,4),key='7'),sg.Button('8',size=(8,4),key='8'),sg.Button('9',size=(8,4),key='9'),sg.Button('*',size=(8,4),key='23')],
     [sg.Button('4',size=(8,4),key='4'),sg.Button('5',size=(8,4),key='5'),sg.Button('6',size=(8,4),key='6'),sg.Button('-',size=(8,4),key='22')],
     [sg.Button('1',size=(8,4),key='1'),sg.Button('2',size=(8,4),key='2'),sg.Button('3',size=(8,4),key='3'),sg.Button('+',size=(8,4),key='21')],
-    [sg.Button('happy',size=(8,4),key='bh'),sg.Button('0',size=(8,4),key='0'),sg.Button('.',size=(8,4),key='bd'),sg.Button('=',size=(8,4),key='29')]
+    [sg.Button('happy',size=(8,4),key='999'),sg.Button('0',size=(8,4),key='0'),sg.Button('.',size=(8,4),key='33'),sg.Button('=',size=(8,4),key='29')]
+    ]
+
+hpylay=[
+    [sg.Text(key='out',font=('Arial',15),pad=((30,30),(30,30)))],
+    [sg.Button('Yes',size=(2,2),key='yes'),sg.Button('No',size=(2,2),key='no'),]
     ]
 
 window = sg.Window('Calculator', layout, resizable=False,size=(400,600))
+happy=sg.Window('Hey',hpylay,resizable=False,size=(300,300))
 
-su1=su2=sign=esi=bd1=bd2=fi=flag=Err=eq=ch2=ff=flag2=0
+su1=su2=sign=esi=bd1=bd2=fi=flag=Err=eq=ch2=ff=flag2=sy=sco=0
 #suf1=suf2=sumf=0.0
 sum1=9999
 #sign=
@@ -117,18 +123,43 @@ while True:
     if int(event) in range(10):
         if eq==1:
             #su1=su2=flag=flag2=eq=sum1=ch2=0
-            su1=su2=flag=eq=sum1=ch2=ff=0
+            su1=su2=flag=eq=sum1=ch2=ff=sy=0
         if flag2==0:         #first
-            print('event=',event)
-            su1=su1*10+int(event)
-            window['out'].update(su1)
+            if sy==0:
+                if su1>=0:
+                    print('event=',event)
+                    su1=su1*10+int(event)
+                    window['out'].update(su1)
+                else:
+                    print('event=',event)
+                    su1=su1*10+int(event)*-1
+                    window['out'].update(su1)
+            else:
+                if su1>=0:
+                    print('event=',event)
+                    su1=su1+0.1**sco*int(event)
+                    sco+=1
+                    window['out'].update(su1)
+                else:
+                    print('event=',event)
+                    su1=su1+0.1**sco*int(event)*-1
+                    sco+=1
+                    window['out'].update(su1)
         else:
-            print('event=',event)
-            ch2=1
-            su2=su2*10+int(event)
-            window['out'].update(su2)
+            if sy==0:
+                print('event=',event)
+                ch2=1
+                su2=su2*10+int(event)
+                window['out'].update(su2)
+            else:
+                print('event=',event)
+                ch2=1
+                su2=su2+0.1**sco*int(event)
+                sco+=1
+                window['out'].update(su2)
     elif int(event) in range(21,25):
         print('event=',event)
+        sy=0
         if eq==0:
             if flag2==0:
                 flag2=int(event)
@@ -192,17 +223,34 @@ while True:
             window['out'].update('Error')
             Err=1
         if Err==1:
-            Err=su1=su2=flag=0
+            Err=su1=su2=flag=sy=0
             pass
         else:
             window['out'].update(sum1)
-            flag=flag2=ff=ch2=0
+            flag=flag2=ff=ch2=sy=0
             print('flag=',flag)
     elif event=='99':
-        su1=su2=flag=eq=sum1=ch2=ff=flag2=0
+        su1=su2=flag=eq=sum1=ch2=ff=flag2=sy=0
         window['out'].update(sum1)
         print('\n-----AC-----\n')
-        
+    elif event=='31':
+        if flag2==0:
+            su1*=-1
+            window['out'].update(su1)
+        else:
+            su2*=-1
+            window['out'].update(su2)
+    elif event=='32':
+        if flag2==0:
+            su1*=0.01
+            window['out'].update(su1)
+        else:
+            su2*=0.01
+            window['out'].update(su2)
+    elif event=='33':
+        sy=sco=1
+
+
 '''
     elif event=='b2':
         window['out'].update('2')
