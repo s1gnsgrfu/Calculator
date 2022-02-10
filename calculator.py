@@ -10,7 +10,6 @@ see https://github.com/s1gnsgrfu/Calculator/blob/master/LICENSE
 import PySimpleGUI as sg
 
 def hpy():
-    #sg.popup('Are you Ready???',title="OK?",keep_on_top=True)
     hlayout = [
         [sg.Text('Happy?',font=('Segoe UI Variable Small Light',29),pad= ((30,30),(30,30)),background_color='azure2')],
         [sg.Button('Yes',size=(10,6),key='Y',button_color=('black','Slategray1')),sg.Button('No',size=(10,6),key='N',button_color=('black','Slategray1'))]
@@ -130,13 +129,6 @@ while True:
                 flag2=int(event)
                 print('flag2=',flag)
                 print('range21-25-1')
-            #elif ff==1:
-                #flag=flag2
-                #flag2=ff=0
-                #flag2=int(event)
-                #print('flag=',flag)
-                #print('flag2=',flag2)
-                #print('ff=',ff)
             else:
                 flag=flag2
                 flag2=int(event)
