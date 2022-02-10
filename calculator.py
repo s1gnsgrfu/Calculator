@@ -1,16 +1,22 @@
-#from sys import flags
-#from tkinter import Event
+'''
+calculator.py
+
+Copyright (c) 2022 s1gnsgrfu
+
+This software is released under the GNU LGPLv3.
+see https://github.com/s1gnsgrfu/Calculator/blob/master/LICENSE
+'''
+
 import PySimpleGUI as sg
-#sg.theme_previewer()
 
 def hpy():
     #sg.popup('Are you Ready???',title="OK?",keep_on_top=True)
     hlayout = [
-        [sg.Text('Happy?',font=('Arial',29),pad= ((30,30),(30,30)))],
-        [sg.Button('Yes',size=(10,6),key='Y'),sg.Button('No',size=(10,6),key='N')]
+        [sg.Text('Happy?',font=('Segoe UI Variable Small Light',29),pad= ((30,30),(30,30)),background_color='azure2')],
+        [sg.Button('Yes',size=(10,6),key='Y',button_color=('black','Slategray1')),sg.Button('No',size=(10,6),key='N',button_color=('black','Slategray1'))]
         ]
 
-    hwindow = sg.Window('Happy?', hlayout, resizable=False,size=(215,250))
+    hwindow = sg.Window('Happy?', hlayout, resizable=False,size=(215,250),background_color='azure2')
      
     while True:
         event,values=hwindow.read()
@@ -19,7 +25,8 @@ def hpy():
             print('exit')
             break
         elif event =='N':
-            print('exit')
+            #print('exit')
+            gon()
             break
 
         if event=='Y':
@@ -28,8 +35,22 @@ def hpy():
     hwindow.close()
     return 0
 
+def gon():
+    go=[[sg.Text('Oh... I wish you will be happy.',font=('Segoe UI Variable Small Light',50),pad= ((30,30),(30,30)))]]
+    gow = sg.Window('hahaha',go,resizable=False)
+
+    while True:
+        event,values=gow.read()
+
+        if event is None:
+            print('exit')
+            gow.close()
+            break
+    gow.close()
+    return 0
+
 def go():
-    go=[[sg.Text('You are already HAPPY.',font=('Arial',100),pad= ((30,30),(30,30)))]]
+    go=[[sg.Text('HAPPY HAPPY HAPPY!!!',font=('Segoe UI Variable Small Light',50),pad= ((30,30),(30,30)))]]
     gow = sg.Window('hahaha',go,resizable=False)
 
     while True:
@@ -45,16 +66,15 @@ def go():
 sg.theme('GrayGrayGray')
 
 layout =[
-    #[sg.Frame('', [],size=(400,600))],
-    [sg.Text(key='out',font=('Arial',40),pad=((30,30),(30,30)))],
-    [sg.Button('AC',size=(8,4),key='99'),sg.Button('+/-',size=(8,4),key='31'),sg.Button('%',size=(8,4),key='32'),sg.Button('/',size=(8,4),key='24')],
-    [sg.Button('7',size=(8,4),key='7'),sg.Button('8',size=(8,4),key='8'),sg.Button('9',size=(8,4),key='9'),sg.Button('*',size=(8,4),key='23')],
-    [sg.Button('4',size=(8,4),key='4'),sg.Button('5',size=(8,4),key='5'),sg.Button('6',size=(8,4),key='6'),sg.Button('-',size=(8,4),key='22')],
-    [sg.Button('1',size=(8,4),key='1'),sg.Button('2',size=(8,4),key='2'),sg.Button('3',size=(8,4),key='3'),sg.Button('+',size=(8,4),key='21')],
-    [sg.Button('happy',size=(8,4),key='999'),sg.Button('0',size=(8,4),key='0'),sg.Button('.',size=(8,4),key='33'),sg.Button('=',size=(8,4),key='29')]
+    [sg.Text(key='out',font=('Segoe UI Variable Small Light',40),pad=((30,30),(30,30)),background_color='azure2')],
+    [sg.Button('AC',size=(8,4),key='99',button_color=('black','Slategray3')),sg.Button('+/-',size=(8,4),key='31',button_color=('black','Slategray3')),sg.Button('%',size=(8,4),key='32',button_color=('black','Slategray3')),sg.Button('/',size=(8,4),key='24',button_color=('black','Slategray3'))],
+    [sg.Button('7',size=(8,4),key='7',button_color=('black','Slategray1')),sg.Button('8',size=(8,4),key='8',button_color=('black','Slategray1')),sg.Button('9',size=(8,4),key='9',button_color=('black','Slategray1')),sg.Button('*',size=(8,4),key='23',button_color=('black','Slategray3'))],
+    [sg.Button('4',size=(8,4),key='4',button_color=('black','Slategray1')),sg.Button('5',size=(8,4),key='5',button_color=('black','Slategray1')),sg.Button('6',size=(8,4),key='6',button_color=('black','Slategray1')),sg.Button('-',size=(8,4),key='22',button_color=('black','Slategray3'))],
+    [sg.Button('1',size=(8,4),key='1',button_color=('black','Slategray1')),sg.Button('2',size=(8,4),key='2',button_color=('black','Slategray1')),sg.Button('3',size=(8,4),key='3',button_color=('black','Slategray1')),sg.Button('+',size=(8,4),key='21',button_color=('black','Slategray3'))],
+    [sg.Button('Happy',size=(8,4),key='999',button_color=('black','Slategray1')),sg.Button('0',size=(8,4),key='0',button_color=('black','Slategray1')),sg.Button('.',size=(8,4),key='33',button_color=('black','Slategray1')),sg.Button('=',size=(8,4),key='29',button_color=('black','cadet blue'))]
     ]
 
-window = sg.Window('Calculator', layout, resizable=False,size=(350,550))
+window = sg.Window('Calculator', layout, resizable=False,size=(350,550),background_color='azure2')
 
 su1=su2=fi=flag=Err=eq=ch2=ff=flag2=sy=sco=0
 sum1=9999
